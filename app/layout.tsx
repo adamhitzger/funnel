@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Inter } from 'next/font/google'
+import { CartProvider } from "@/lib/card";
+import AgeBanner from "@/components/age-banner";
+import { Toaster } from "react-hot-toast";
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
 const font = localFont({
   src: "./fonts/Bold.woff",
   variable: "--font-hussar-bold",
@@ -25,7 +23,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} bg-gradient-to-r from-lime-600 via-yellow-300 to-red-600`}>
-        {children}
+        <CartProvider>
+          <AgeBanner />
+          {children}
+          <Toaster
+            toastOptions={{
+              style: {
+                textAlign: "center",
+              }
+            }}
+          />
+        </CartProvider>
       </body>
     </html>
   );
