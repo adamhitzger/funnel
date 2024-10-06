@@ -14,8 +14,8 @@ export function Funnel() {
   const [isPending, startTransition] = useTransition();
   const [currentImage, setCurrentImage] = useState<number>(0)
   const [form, setForm] = useState({
-    terpens: "silver" || "gold" || "black",
-    size: "halfg" || "1g" || "3g",
+    terpens: "silver",
+    size: "halfg",
     quantity: 1,
   })
   const images = [
