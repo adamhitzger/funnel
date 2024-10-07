@@ -80,10 +80,11 @@ export async function createOrder(formData: FormData, productsLength: number){
                     args: [product.name, product.size, product.terpens, product.price, product.quantity, orderId]
                 });
             }
+            revalidatePath("/checkout");
+    redirect("/");
     } catch (error) {
         console.error(error);
-        revalidatePath("/checkout");
-    redirect("/");
+        
     }
     
     return{
