@@ -1,9 +1,13 @@
+"use client"
+
 import { useState } from 'react'
-import { ShoppingCart, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { useCart } from '@/lib/card'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Basket() {
     const { items, removeItem, updateQuantity, total, clearCart } = useCart()
@@ -12,22 +16,22 @@ export default function Basket() {
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="relative">
-                    <ShoppingCart className="h-6 w-6 text-black" />
+                <div className="relative border px-5 rounded-lg bg-white">
+                    <Image height={32} width={32} src={"/bong.svg"} alt='Bong logo' />
                     {items.length > 0 && (
                         <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
                             {items.length}
                         </span>
                     )}
                     <span className="sr-only">Open cart</span>
-                </Button>
+                </div>
             </SheetTrigger>
             <SheetContent className="w-full sm:max-w-lg">
                 <SheetHeader>
-                    <SheetTitle>Your Cart</SheetTitle>
+                    <SheetTitle>Váš košík</SheetTitle>
                 </SheetHeader>
                 {items.length === 0 ? (
-                    <p className="text-center text-muted-foreground mt-4">Your cart is empty</p>
+                    <p className="text-center text-muted-foreground mt-4">je prázdný...</p>
                 ) : (
                     <div className="mt-8 space-y-4">
                         {items.map((item) => (
@@ -42,10 +46,10 @@ export default function Basket() {
                                         type="number"
                                         min="1"
                                         value={item.quantity}
-                                        onChange={(e) => updateQuantity(item.id, parseInt(e.target.value, 10))}
+                                        onChange={(e) => updateQuantity(item.terpens, item.size, parseInt(e.target.value, 10))}
                                         className="w-16"
                                     />
-                                    <Button variant="outline" size="icon" onClick={() => removeItem(item.id)}>
+                                    <Button variant="outline" size="icon" onClick={() => removeItem(item.terpens, item.size)}>
                                         <X className="h-4 w-4" />
                                         <span className="sr-only">Odstranit</span>
                                     </Button>
@@ -60,7 +64,7 @@ export default function Basket() {
                         </div>
                         <div className="flex justify-between space-x-4">
                             <Button variant="outline" onClick={clearCart}>Vyčistit košík</Button>
-                            <Button>Checkout</Button>
+                            <Link href={"/checkout"}><Button>Zaplatit</Button></Link>
                         </div>
                     </div>
                 )}

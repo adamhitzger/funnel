@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { addNewsletter, createBasket } from '@/lib/actions'
-import Basket from './basket'
 import { useCart } from '@/lib/card'
 import Link from 'next/link'
 import { SocialIcon } from 'react-social-icons/component'
@@ -44,7 +43,7 @@ export function Funnel() {
       link: "mailto:info@hydroocann.com"
     },
   ]
-  const year = new Date().getFullYear();
+
   const sizePricing: SizePricing = {
     "0.5g": 499,
     "1g": 799,
@@ -106,20 +105,8 @@ export function Funnel() {
     })
   }
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className=" text-primary-foreground py-4">
 
-        <div className="container flex flex-row items-center justify-between mx-auto px-4">
-          <Image
-            width={200}
-            height={200}
-            src={"/images/logo.png"}
-            alt='Logo Hydroocann s.r.o.'
-          />
-          <Basket />
-        </div>
-      </header>
-
+    <>
       <main className=" flex-grow container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
@@ -204,7 +191,7 @@ export function Funnel() {
               </div>
               <div className="flex items-center justify-between">
 
-                <span className="text-2xl font-bold">{sizePricing[form.size]} Kč</span>
+                <span className="text-2xl font-bold"><span className='line-through text-red-700 mx-2'>{sizePricing[form.size] + 150} Kč</span>{sizePricing[form.size]} Kč</span>
                 <Button size="lg">
                   {isPending ? <Loader2 className='animate-spin' /> : <><ShoppingCart className="mr-2 h-4 w-4" />Zakoupit</>}
 
@@ -217,7 +204,7 @@ export function Funnel() {
                 <li>Výrobek je určen pro další technické a laboratorní zpracování</li>
                 <li>Výrobek není určen ke kouření ani jiné konzumaci</li>
                 <li>Informace uvedené na této stránce není možné chápat jako odborné rady.</li>
-                <li>Prodej osobám mladším 18ti let je zakázán</li>
+                <li>Prodej osobám mladším 18 let je zakázán</li>
                 <li>Více v <Link target='_blank' href={"https://www.hydroocann.com/prohlaseni-o-odpovednosti/"} className='underline'>prohlášení o odpovědnosti</Link></li>
               </ul>
             </div>
@@ -232,19 +219,13 @@ export function Funnel() {
         <div className="mt-16 bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-5">
           <h3 className="text-2xl font-bold mb-4">Buďte první kdo se dozví o novinkách a slevách!</h3>
           <form className="flex gap-4" action={handleNewslleter}>
-            <Input type="email" name="email" placeholder="Zadejte email" defaultValue={email.email} className="flex-grow" />
+            <Input type="email" name="email" placeholder="Zadejte email" defaultValue={email.email} className="flex-grow" disabled={isPending} />
             <Button type="submit">{isPending ? <Loader2 className='animate-spin' /> : "Odebírat"}</Button>
           </form>
         </div>
       </main>
 
-      <footer className="bg-muted py-6 mt-12">
-        <div className="container flex flex-col lg:flex-row justify-between mx-auto px-4 text-center text-muted-foreground">
-          <p>&copy; {year} Hydroocann s.r.o.</p>
-          <p><Link href={"https://www.hydroocann.com/reklamacni-rad/"} target='_blank' className='underline'>Reklamační řád</Link>, <Link className='underline' href={"https://www.hydroocann.com/obchodni-podminky/"} target='_blank'>Obchodní podmínky</Link>, <Link className='underline' href={"https://www.hydroocann.com/podminky-ochrany-osobnich-udaju/"} target='_blank'>Ochrana os. údajů</Link></p>
-          <p>Developed by <Link href={"https://www.linkedin.com/in/adam-hitzger-aa518622b/?originalSubdomain=cz"} className='underline' target='_blank'>Adam Hitzger</Link></p>
-        </div>
-      </footer>
-    </div>
+
+    </>
   )
 }

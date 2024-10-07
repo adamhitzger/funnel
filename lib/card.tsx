@@ -13,8 +13,8 @@ export type CartItem = {
 type CartContextType = {
     items: CartItem[]
     addItem: (item: CartItem) => void
-    removeItem: (id: string) => void
-    updateQuantity: (id: string, quantity: number) => void
+    removeItem: (terpens: string, size: string) => void
+    updateQuantity: (terpens: string, size: string, quantity: number) => void
     clearCart: () => void
     total: number
 }
@@ -42,13 +42,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         })
     }
 
-    const removeItem = (id: string) => {
-        setItems((prevItems) => prevItems.filter((item) => item.id !== id))
+    const removeItem = (terpens: string, size: string) => {
+        setItems((prevItems) => prevItems.filter((item) => item.terpens !== terpens || item.size !== size))
     }
 
-    const updateQuantity = (id: string, quantity: number) => {
+    const updateQuantity = (terpens: string, size: string, quantity: number) => {
         setItems((prevItems) =>
-            prevItems.map((item) => (item.id === id ? { ...item, quantity } : item))
+            prevItems.map((item) => (item.terpens === terpens && item.size === size ? { ...item, quantity } : item))
         )
     }
 

@@ -1,0 +1,19 @@
+<svg width="200" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400">
+  <!-- Bong base -->
+  <ellipse cx="100" cy="350" rx="60" ry="30" fill="#bbb" stroke="#000000" stroke-width="5"/>
+
+  <!-- Bong body -->
+  <rect x="60" y="150" width="80" height="200" fill="#bbb" stroke="#000000" stroke-width="5" rx="40" ry="40"/>
+
+  <!-- Bong neck -->
+  <rect x="80" y="50" width="40" height="100" fill="#bbb" stroke="#000000" stroke-width="5" rx="20" ry="20"/>
+
+  <!-- Mouthpiece -->
+  <ellipse cx="100" cy="50" rx="30" ry="10" fill="#bbb" stroke="#000000" stroke-width="5"/>
+
+  <!-- Bong stem -->
+  <line x1="120" y1="250" x2="170" y2="180" stroke="#000000" stroke-width="10"/>
+
+  <!-- Stem bowl -->
+  <circle cx="170" cy="180" r="15" fill="#bbb" stroke="#000000" stroke-width="5"/>
+</svg>

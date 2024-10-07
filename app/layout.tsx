@@ -4,6 +4,8 @@ import "./globals.css";
 import { CartProvider } from "@/lib/card";
 import AgeBanner from "@/components/age-banner";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const font = localFont({
   src: "./fonts/Bold.woff",
@@ -25,7 +27,11 @@ export default function RootLayout({
       <body className={`${font.className} bg-gradient-to-r from-lime-600 via-yellow-300 to-red-600`}>
         <CartProvider>
           <AgeBanner />
-          {children}
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            {children}
+            <Footer />
+          </div>
           <Toaster
             toastOptions={{
               style: {
