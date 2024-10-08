@@ -172,7 +172,7 @@ export function Funnel() {
 
               <div>
                 <Label htmlFor="size">Objem:</Label>
-                <Select name='size' defaultValue={form.size} disabled={isPending} onValueChange={handleSizeChange as (value: string) => void}
+                <Select name='size' value={form.size} disabled={isPending} onValueChange={handleSizeChange as (value: string) => void}
                 >
                   <SelectTrigger id="size">
                     <SelectValue placeholder="Select size" />
@@ -186,7 +186,7 @@ export function Funnel() {
               </div>
 
               <div>
-                <Input type="number" name="quantity" className="flex-grow" defaultValue={form.quantity} min={"1"} disabled={isPending} onChange={handleQuantityChange}
+                <Input type="number" name="quantity" className="flex-grow" value={form.quantity} min={"1"} disabled={isPending} onChange={handleQuantityChange}
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -219,7 +219,7 @@ export function Funnel() {
         <div className="mt-16 bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30 p-5">
           <h3 className="text-2xl font-bold mb-4">Buďte první kdo se dozví o novinkách a slevách!</h3>
           <form className="flex gap-4" action={handleNewslleter}>
-            <Input type="email" name="email" placeholder="Zadejte email" defaultValue={email.email} className="flex-grow" disabled={isPending} />
+            <Input type="email" name="email" placeholder="Zadejte email" className="flex-grow" disabled={isPending} />
             <Button type="submit">{isPending ? <Loader2 className='animate-spin' /> : "Odebírat"}</Button>
           </form>
         </div>

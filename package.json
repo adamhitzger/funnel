@@ -24,7 +24,8 @@
     "react-hot-toast": "^2.4.1",
     "react-social-icons": "^6.18.0",
     "tailwind-merge": "^2.5.3",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
